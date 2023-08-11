@@ -12,8 +12,10 @@
       ],
       "executor": "@nx/webpack:webpack",
       "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "release",
+      "defaultConfiguration": "production",
       "options": {
+        "target": "node",
+        "compiler": "tsc",
         "outputPath": "dist/{{data.group_folder}}/{{data.path}}",
         "main": "{{data.group_folder}}/{{data.path}}/src/main.ts",
         "tsConfig": "{{data.group_folder}}/{{data.path}}/tsconfig.app.json",
@@ -22,21 +24,8 @@
         "webpackConfig": "{{data.group_folder}}/{{data.path}}/webpack.config.js"
       },
       "configurations": {
-        "development": {
-          "extractLicenses": false,
-          "optimization": false,
-          "sourceMap": true,
-          "vendorChunk": true,
-          "inspect": true
-        },
-        "release": {
-          "optimization": true,
-          "sourceMap": false,
-          "namedChunks": false,
-          "extractLicenses": true,
-          "vendorChunk": true,
-          "inspect": false
-        }
+        "development": {},
+        "production": {}
       }
     },
     "serve": {
