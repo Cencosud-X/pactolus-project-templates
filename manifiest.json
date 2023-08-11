@@ -1,0 +1,19 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Cencosud-X/seki-schemas/main/v1/projects/manifiestrc.schema.json",
+  "name": "Legacy Project Templates",
+  "author": {
+    "github_user": "johnnyhuirilef",
+    "name": "Team Seki"
+  },
+  "icons": {
+    "dark": "logo.svg",
+    "light": "logo.svg"
+  },
+  "descriptions": {
+    "es": "Lista de plantillas para Seki con configuraciones de proyectos en Pactolus",
+    "en": "long description..."
+  },
+  "types": [
+    "api/typerc.json"
+  ]
+}
