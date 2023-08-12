@@ -14,6 +14,6 @@
     "en": "long description..."
   },
   "types": [
-    "api-koa/typerc.json"
+    "api/typerc.json"
   ]
 }
