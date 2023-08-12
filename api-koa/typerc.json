@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/Cencosud-X/seki-schemas/main/v1/projects/typerc.schema.json",
-  "name": "Api with Koa",
+  "name": "[Api] Koa",
   "tags": [
     "Api",
     "Web server",
@@ -10,8 +10,8 @@
   "kind": "api",
   "folder": "apps",
   "icons": {
-    "light": "icons/icon.svg",
-    "dark": "icons/icon.svg"
+    "light": "icons/icon-light.svg",
+    "dark": "icons/icon-dark.svg"
   },
   "descriptions": {
     "en": "Simple server api made with koa",
