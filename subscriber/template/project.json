@@ -18,7 +18,7 @@
         "main": "{{data.group_folder}}/{{data.path}}/src/main.ts",
         "tsConfig": "{{data.group_folder}}/{{data.path}}/tsconfig.app.json",
         "assets": ["{{data.group_folder}}/{{data.path}}/src/config"],
-        "webpackConfig": "{{data.group_folder}}/{{data.path}}/webpack.js"
+        "webpackConfig": "{{data.group_folder}}/{{data.path}}/webpack.config.js"
       },
       "configurations": {
         "development": {
