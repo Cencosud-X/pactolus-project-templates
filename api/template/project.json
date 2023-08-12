@@ -6,8 +6,7 @@
     "build": {
       "dependsOn": [
         {
-          "target": "secrets",
-          "projects": "self"
+          "target": "secrets"
         }
       ],
       "executor": "@nx/webpack:webpack",
@@ -31,8 +30,7 @@
     "serve": {
       "dependsOn": [
         {
-          "target": "secrets",
-          "projects": "self"
+          "target": "secrets"
         }
       ],
       "executor": "@nx/js:node",
@@ -53,8 +51,7 @@
     "lint": {
       "dependsOn": [
         {
-          "target": "secrets",
-          "projects": "self"
+          "target": "secrets"
         }
       ],
       "executor": "@nx/linter:eslint",
@@ -70,8 +67,7 @@
     "test": {
       "dependsOn": [
         {
-          "target": "secrets",
-          "projects": "self"
+          "target": "secrets"
         }
       ],
       "executor": "@nx/jest:jest",
