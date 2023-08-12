@@ -27,5 +27,6 @@
     "substitutions": {
       "TAG_GOLDEN_REQUIRED": "REQUIRED:GOLDEN"
     }
-  }
+  },
+  "color": "#5584FF"
 }
