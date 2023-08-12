@@ -15,6 +15,7 @@
   },
   "types": [
     "api/typerc.json",
-    "library/typerc.json"
+    "library/typerc.json",
+    "subscriber/typerc.json"
   ]
 }
