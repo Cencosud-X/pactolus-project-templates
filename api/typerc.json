@@ -10,8 +10,8 @@
   "kind": "api",
   "folder": "apps",
   "icons": {
-    "light": "icons/icon-light.svg",
-    "dark": "icons/icon-dark.svg"
+    "light": "icons/icon.svg",
+    "dark": "icons/icon.svg"
   },
   "descriptions": {
     "en": "Simple server api made with koa",
