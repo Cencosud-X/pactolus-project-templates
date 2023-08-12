@@ -24,7 +24,7 @@ module.exports = async (runner, args) => {
       await runner.execute(installKafka, { cwd: rc.workspace_path });  
     }
 
-    await runner.execute([`npx nx g @nx/node:application ${rc.path} --bundler=none --tags=\"REQUIRED:GOLDEN\" --unitTestRunner=jest --e2eTestRunner=none`], { cwd: rc.workspace_path })
+    await runner.execute([`npx nx g @nx/node:application ${rc.path} --framework=none  --bundler=webpack --tags=\"REQUIRED:GOLDEN\" --unitTestRunner=jest --e2eTestRunner=none`], { cwd: rc.workspace_path })
 
     console.log("> PRE: requisites ✅ DONE");
   } catch (ex) {
