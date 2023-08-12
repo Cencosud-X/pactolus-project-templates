@@ -6,14 +6,14 @@
     "build": {
       "dependsOn": [
         {
-          "target": "secrets",
-          "projects": "self"
-        }
+          "target": "secrets"        }
       ],
       "executor": "@nx/webpack:webpack",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "release",
       "options": {
+        "target": "node",
+        "compiler": "tsc",
         "outputPath": "dist/{{data.group_folder}}/{{data.path}}",
         "main": "{{data.group_folder}}/{{data.path}}/src/main.ts",
         "tsConfig": "{{data.group_folder}}/{{data.path}}/tsconfig.app.json",
