@@ -7,7 +7,7 @@ module.exports = async (runner, args) => {
     const topics = !!rc.settings.topics;
     
     const packages = [
-      "npm install --save-dev @nx/node:application",
+      "npm install --save-dev @nx/node:application --bundler=none --tags=\"REQUIRED:GOLDEN\" --unitTestRunner=jest --e2eTestRunner=none",
       "npm install --save @team_seki/subscriber-plugin@1.0.8",
     ];
     const installPubsub = Array.isArray(topics) && topics.some(topic => topic.provider === "PubSub") ? "npm install --save @team_seki/pubsub-streamer-plugin@1.1.4" : null;

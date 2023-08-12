@@ -41,7 +41,7 @@
     "serve": {
       "dependsOn": [
         {
-          "target": "secrets",
+          "target": "secrets"
         }
       ],
       "executor": "@nx/js:node",
