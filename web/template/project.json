@@ -14,7 +14,7 @@
       "defaultConfiguration": "release",
       "options": {
         "outputPath": "dist/{{data.group_folder}}/{{data.path}}",
-        "compiler": "babel",
+        "compiler": "swc",
         "index": "{{data.group_folder}}/{{data.path}}/src/index.html",
         "baseHref": "/",
         "main": "{{data.group_folder}}/{{data.path}}/src/main.tsx",
@@ -22,7 +22,6 @@
         "tsConfig": "{{data.group_folder}}/{{data.path}}/tsconfig.app.json",
         "assets": ["{{data.group_folder}}/{{data.path}}/src/assets", "{{data.group_folder}}/{{data.path}}/src/config"],
         "styles": [],
-        "scripts": [],
         "webpackConfig": "{{data.group_folder}}/{{data.path}}/webpack.config.js"
       },
       "configurations": {
@@ -34,10 +33,12 @@
         },
         "release": {
           "optimization": true,
+          "outputHashing": "all",
           "sourceMap": false,
           "namedChunks": false,
           "extractLicenses": true,
-          "vendorChunk": true
+          "vendorChunk": true,
+          "fileReplacements": []
         }
       }
     },
@@ -47,7 +48,7 @@
           "target": "secrets"
         }
       ],
-      "executor": "@nx/web:dev-server",
+      "executor": "@nx/webpack:dev-server",
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "{{data.path}}:build"
