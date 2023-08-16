@@ -22,6 +22,7 @@ module.exports = async (runner, args) => {
 
     await runner.execute([
       'npm install -D @nx/js',
+      'npm install -D webpack-merge',
       `npx nx g @nx/js:lib ${rc.path} ${publishableArg} ${buildableArg} ${tagArg} --unitTestRunner=jest`
     ], {
       cwd: rc.workspace_path
