@@ -1,11 +1,14 @@
-// Helper for combining webpack config objects
 const { composePlugins, withNx } = require('@nx/webpack')
-const { merge } = require('webpack-merge');
+const { merge } = require('webpack-merge')
 
+// Nx plugins for webpack.
 module.exports = composePlugins(withNx(), (config) => {
+  // Update the webpack config as needed here.
+  // e.g. `config.plugins.push(new MyPlugin())`
+  // return config
   return merge(config, {
     output: {
-      filename: '[name].js'
+      filename: '[name].js',
     },
     optimization: {
       splitChunks: {
@@ -21,15 +24,15 @@ module.exports = composePlugins(withNx(), (config) => {
           secrets: {
             test: /config\/secrets.ts/,
             filename: 'config/secrets.js',
-            chunks: "initial",
+            chunks: 'initial',
             enforce: true,
             name(module) {
-              const filename = module.rawRequest.replace(/^.*[\\/]/, '');
-              return filename.substring(0, filename.lastIndexOf('.'));
+              const filename = module.rawRequest.replace(/^.*[\\/]/, '')
+              return filename.substring(0, filename.lastIndexOf('.'))
             },
-          }
-        }
-      }
-    }
-  });
+          },
+        },
+      },
+    },
+  })
 })

@@ -1,6 +1,11 @@
 {
   "extends": ["../../.eslintrc.json"],
-  "ignorePatterns": ["!**/*"],
+  "ignorePatterns": ["!**/*", "**/config/secrets.ts"],
+  "parserOptions": {
+    "project": [
+      "{{data.group_folder}}/{{data.path}}/tsconfig.*?.json"
+    ]
+  },
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
