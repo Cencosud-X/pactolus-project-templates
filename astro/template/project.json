@@ -1,0 +1,51 @@
+{
+  "name": "astro-app",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "{{data.group_folder}}/{{data.path}}/src",
+  "targets": {
+    "build": {
+      "dependsOn": [
+        {
+          "target": "secrets"
+        }
+      ],
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "executor": "@nxtensions/astro:build",
+      "options": {}
+    },
+    "serve": {
+      "dependsOn": [
+        {
+          "target": "secrets"
+        }
+      ],
+      "executor": "@nxtensions/astro:dev",
+      "options": {}
+    },
+    "preview": {
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "self"
+        }
+      ],
+      "executor": "@nxtensions/astro:preview",
+      "options": {}
+    },
+    "check": {
+      "executor": "@nxtensions/astro:check"
+    },
+    "sync": {
+      "executor": "@nxtensions/astro:sync"
+    },
+    "secrets": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "seki secrets generate -p={{data.path}}",
+        "cwd": "."
+      }
+    }
+  },
+  "tags": ["REQUIRED:GOLDEN"]
+}

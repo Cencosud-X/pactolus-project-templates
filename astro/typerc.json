@@ -1,0 +1,27 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Cencosud-X/seki-schemas/main/v1/projects/typerc.schema.json",
+  "name": "Web",
+  "tags": [
+    "Node",
+    "React",
+    "Astro"
+  ],
+  "kind": "web",
+  "folder": "apps",
+  "icons": {
+    "light": "icons/icon.svg",
+    "dark": "icons/icon.svg"
+  },
+  "descriptions": {
+    "es": "Plantilla de proyecto que se encuentra desarrollada en astro build",
+    "en": "Project template that is developed in astro build"
+  },
+  "scripts": {
+    "pre": "scripts/pre.js",
+    "post": "scripts/post.js",
+    "rollback": "scripts/rollback.js"
+  },
+  "interpolations": {
+    "source": "template"
+  }
+}
