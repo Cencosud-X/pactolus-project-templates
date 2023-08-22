@@ -6,7 +6,7 @@
     "React",
     "Astro"
   ],
-  "kind": "web",
+  "kind": "astro",
   "folder": "apps",
   "icons": {
     "light": "icons/icon.svg",
