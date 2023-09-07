@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "allOf": [
+    {
+      "properties": {
+        "settings": {
+          "required": ["secured"],
+          "type": "object",
+          "description": "Specific configuration",
+          "default": { "secured": true },
+          "properties": {
+            "secured": {
+              "type": "boolean",
+              "description": "Secured the page with an authentication provider (default: microsoft adfs)",
+              "default": true
+            }
+          }
+        }
+      }
+    },
+    {
+      "$ref": "https://raw.githubusercontent.com/Cencosud-X/seki-schemas/main/v1/projects/type.schema.json"
+    }
+  ]
+}
