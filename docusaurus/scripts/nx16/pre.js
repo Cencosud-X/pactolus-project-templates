@@ -37,6 +37,9 @@ module.exports = async (runner, context) => {
     context.whenNotInstalled("@docusaurus/theme-mermaid", (pkg) => {
       return `npm install ${pkg}@3.0.0`;
     }),
+    context.whenNotInstalled("prism-react-renderer", (pkg) => {
+      return `npm install ${pkg}@^2.1.0`;
+    }),
     context.whenNotInstalled("@docusaurus/module-type-aliases", (pkg) => {
       return `npm install -D ${pkg}@3.0.0`;
     }),
