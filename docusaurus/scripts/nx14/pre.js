@@ -12,14 +12,24 @@ module.exports = async (runner, context) => {
     }),
 
     // Docusaurus Dependencies
+    // Docusaurus Dependencies
     context.whenNotInstalled("@docusaurus/core", (pkg) => {
-      return `npm install ${pkg}@2.4.1`;
+      return `npm install ${pkg}@3.0.0`;
     }),
     context.whenNotInstalled("@docusaurus/preset-classic", (pkg) => {
-      return `npm install ${pkg}@2.4.1`;
+      return `npm install ${pkg}@3.0.0`;
     }),
     context.whenNotInstalled("@docusaurus/theme-mermaid", (pkg) => {
-      return `npm install ${pkg}@2.4.1`;
+      return `npm install ${pkg}@3.0.0`;
+    }),
+    context.whenNotInstalled("prism-react-renderer", (pkg) => {
+      return `npm install ${pkg}@3.0.0`;
+    }),
+    context.whenNotInstalled("@docusaurus/module-type-aliases", (pkg) => {
+      return `npm install -D ${pkg}@3.0.0`;
+    }),
+    context.whenNotInstalled("@docusaurus/types", (pkg) => {
+      return `npm install -D ${pkg}@3.0.0`;
     }),
 
     // Project creation
