@@ -19,7 +19,7 @@
       }
     },
     {
-      "$ref": "https://raw.githubusercontent.com/Cencosud-X/seki-schemas/main/v1/projects/type.schema.json"
+      "$ref": "https://api.staging.cencox.xyz/seki/statics/public/schemas/v1/projects/type.schema.json"
     }
   ]
 }

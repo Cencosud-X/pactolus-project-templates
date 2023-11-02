@@ -1,37 +1,31 @@
+const { witHelper } = require("./../../tools/helper");
+/**
+ * @type {import("../../tools").TRawMethod}
+ */
 module.exports = async (runner, args) => {
-  try {
-    console.log("> POST: Cleansing:");
+  // Call script based on the Nx Version!
+  const helper = witHelper(args.rc, __dirname);
+  await helper.callVersionedPost(runner, args);
 
-    const rc = args.rc;
-    await runner.execute(
-      [
-        "rm -rf ./src/app",
-        "rm -rf ./src/test-setup.ts",
-        "rm -rf ./favicon.ico",
-        "rm -rf ./src/favicon.ico",
-        "rm -rf ./src/main.ts",
-        "rm -rf ./src/styles.css",
-        //'rm -rf ./src/assets',
-        "rm -rf ./src/environments",
+  // --------------------------------------------------------
+  // Always run this commands (nx version agnostic)
+  const context = helper.getContext();
+  await runner.execute(
+    [
+      "rm -rf ./src/app",
+      "rm -rf ./favicon.ico",
+      "rm -rf ./src/favicon.ico",
+      "rm -rf ./src/main.ts",
+      "rm -rf ./src/styles.css",
+      "rm -rf ./src/environments",
+    ],
+    {
+      cwd: context.getProjectFullPath(),
+    }
+  );
 
-        "rm -rf ./.babelrc",
-        "rm -rf ./.eslintrc.json",
-        "rm -rf ./browserslist",
-        "rm -rf ./jest.config.ts",
-        "rm -rf ./tsconfig.spec.json",
-
-        "rm -rf ./src/index.html",
-        "rm -rf ./src/polyfills.ts",
-        "rm -rf ./src/browserslist",
-        "rm -rf ./src/assets",
-      ],
-      {
-        cwd: args.workspacePath,
-      }
-    );
-
-    console.log("> POST: cleansing process ✅ DONE");
-  } catch {
-    throw new Error("Failed to clean generators");
-  }
+  // Run this command in the workspace path
+  await runner.execute([`npx nx run ${context.getProjectName()}:secrets`], {
+    cwd: context.getRootPath(),
+  });
 };

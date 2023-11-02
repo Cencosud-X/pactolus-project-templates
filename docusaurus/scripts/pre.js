@@ -1,52 +1,38 @@
-const path = require("path");
-
+const { witHelper } = require("./../../tools/helper");
+/**
+ * @type {import("../../tools").TRawMethod}
+ */
 module.exports = async (runner, args) => {
-  try {
-    console.log("> PRE: Installing prerequisites:");
-    const rc = args.rc;
+  // Call script based on the Nx Version!
+  const helper = witHelper(args.rc, __dirname);
+  await helper.callVersionedPre(runner, args);
 
-    let docusaurusVersion = "2.4.1";
-
-    // depend from the react version installed which version
-    // of docusaurus we need to install
-    try {
-      const packageJsonPath = path.join(rc.workspace_path, "package.json");
-      const packageDependencies = require(packageJsonPath).dependencies;
-      const reactVersion = packageDependencies["react"];
-      if (reactVersion.length > 0) {
-        const version = parseInt(reactVersion.split(".")[0]);
-        if (version >= 18) {
-          docusaurusVersion = "3.0.0-alpha.0";
-        }
-      }
-    } catch (ex) {
-      // maybe react wasnt installed at all
-      console.warn(
-        "Maybe react wasnt installed, so we take the default docusaurus version",
-        ex
-      );
+  // --------------------------------------------------------
+  // Always run this commands (nx version agnostic)
+  const context = helper.getContext();
+  const { prefix } = context.getNxInformation();
+  await runner.execute(
+    [
+      // We need this pluging for webpack ^^
+      context.whenNotInstalled(`webpack-merge`, (pkg) => {
+        return `npm install -D ${pkg}@5.9.0`;
+      }),
+      // React router dom dependency
+      context.whenNotInstalled("react-router-dom", (pkg) => {
+        return `npm install ${pkg}@6.3.0`;
+      }),
+    ],
+    {
+      cwd: context.getRootPath(),
     }
+  );
 
-    await runner.execute(
-      [
-        "npm install -D @nrwl/web@14.4.3",
-
-        // Install docusaurus as the default
-        `npm install @docusaurus/core@${docusaurusVersion}`,
-        `npm install @docusaurus/preset-classic@${docusaurusVersion}`,
-        `npm install @docusaurus/theme-mermaid@${docusaurusVersion}`,
-        "npm install react-router-dom",
-
-        `npx nx g @nx/node:app --framework=none --e2eTestRunner=none  --projectNameAndRootFormat=derived ${rc.path}`,
-      ],
-      {
-        cwd: rc.workspace_path,
-      }
-    );
-
-    console.log("> PRE: requisites ✅ DONE");
-  } catch (ex) {
-    console.error(ex);
-    throw new Error("failed to install pre-requisites");
+  // Remove the e2e project that nx in some cases (depends on the NX version)
+  // nx arbitrary create!
+  const e2eToRemove = `${context.getProjectName()}-e2e`;
+  if (context.hasProjectInWorkspace(e2eToRemove)) {
+    await runner.execute([`npx nx g ${prefix}/workspace:rm ${e2eToRemove}`], {
+      cwd: context.getRootPath(),
+    });
   }
 };

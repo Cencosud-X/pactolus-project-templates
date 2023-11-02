@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/Cencosud-X/seki-schemas/main/v1/projects/manifiestrc.schema.json",
+  "$schema": "https://api.staging.cencox.xyz/seki/statics/public/schemas/v1/projects/manifiestrc.schema.json",
   "author": {
     "github_user": "johnnyhuirilef",
     "name": "Team Seki"
@@ -13,12 +13,5 @@
     "light": "logo.svg"
   },
   "name": "Pactolus Project Templates",
-  "types": [
-    "api/typerc.json",
-    "library/typerc.json",
-    "subscriber/typerc.json",
-    "astro/typerc.json",
-    "docusaurus/typerc.json",
-    "web/typerc.json"
-  ]
+  "types": ["docusaurus/typerc.json"]
 }
