@@ -11,7 +11,7 @@ const installGeneralDependencies = async (helper, runner) => {
   const devCommands = generateInstallationDevCommands(context);
 
   console.log("Installing general prerequisites...");
-  await runner.execute([...commands, devCommands], {
+  await runner.execute([...commands, ...devCommands], {
     cwd: context.getRootPath(),
   });
 };
