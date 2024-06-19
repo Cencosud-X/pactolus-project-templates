@@ -1,12 +1,7 @@
 {
-  "$schema": "https://raw.githubusercontent.com/Cencosud-X/seki-schemas/main/v1/projects/typerc.schema.json",
+  "$schema": "https://api.staging.cencox.xyz/seki/statics/public/schemas/v1/projects/typerc.schema.json",
   "name": "Api (with Koa)",
-  "tags": [
-    "Api",
-    "Web server",
-    "Koa",
-    "beta"
-  ],
+  "tags": ["Api", "Web server", "Koa", "beta"],
   "kind": "api",
   "folder": "apps",
   "icons": {

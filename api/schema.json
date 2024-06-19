@@ -4,9 +4,7 @@
     {
       "properties": {
         "settings": {
-          "required": [
-            "port"
-          ],
+          "required": ["port"],
           "type": "object",
           "description": "Specific configuration",
           "properties": {

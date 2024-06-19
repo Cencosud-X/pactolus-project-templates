@@ -13,5 +13,5 @@
     "light": "logo.svg"
   },
   "name": "Pactolus Project Templates",
-  "types": ["docusaurus/typerc.json"]
+  "types": ["api/typerc.json"]
 }

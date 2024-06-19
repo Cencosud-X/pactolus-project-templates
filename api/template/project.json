@@ -55,13 +55,9 @@
         }
       ],
       "executor": "@nx/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "{{data.group_folder}}/{{data.path}}/**/*.ts"
-        ]
+        "lintFilePatterns": ["{{data.group_folder}}/{{data.path}}/**/*.ts"]
       }
     },
     "test": {
@@ -71,9 +67,7 @@
         }
       ],
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "coverage/{{data.group_folder}}/{{data.path}}"
-      ],
+      "outputs": ["coverage/{{data.group_folder}}/{{data.path}}"],
       "options": {
         "jestConfig": "{{data.group_folder}}/{{data.path}}/jest.config.ts",
         "passWithNoTests": true
@@ -87,7 +81,5 @@
       }
     }
   },
-  "tags": [
-    "{{data.TAG_GOLDEN_REQUIRED}}"
-  ]
+  "tags": ["{{data.TAG_GOLDEN_REQUIRED}}"]
 }
