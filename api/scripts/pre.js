@@ -1,53 +1,64 @@
 const { witHelper } = require("./../../tools/helper");
 
-module.exports = async (runner, args) => {
-  console.log("> PRE: Installing prerequisites (API):");
-
-  // Call script based on the Nx Version!
-  const helper = witHelper(args.rc, __dirname);
+const installVersionSpecificDependencies = async (helper, runner, args) => {
+  console.log("Installing version-specific prerequisites...");
   await helper.callVersionedPre(runner, args);
+};
 
-  // --------------------------------------------------------
-  // Always run this commands (nx version agnostic)
+const installGeneralDependencies = async (helper, runner) => {
   const context = helper.getContext();
+  const commands = generateInstallationCommands(context);
+  const devCommands = generateInstallationDevCommands(context);
 
-  const cmds = [
-    context.whenNotInstalled(`glob`, (pkg) => {
-      return `npm install ${pkg}`;
-    }),
-    context.whenNotInstalled(`ansi-colors`, (pkg) => {
-      return `npm install ${pkg}`;
-    }),
-    context.whenNotInstalled(`koa`, (pkg) => {
-      return `npm install ${pkg}`;
-    }),
-    context.whenNotInstalled(`koa-bodyparser`, (pkg) => {
-      return `npm install ${pkg}`;
-    }),
-    context.whenNotInstalled(`koa-router`, (pkg) => {
-      return `npm install ${pkg}`;
-    }),
-    context.whenNotInstalled(`@koa/cors`, (pkg) => {
-      return `npm install ${pkg}`;
-    }),
-    context.whenNotInstalled(`webpack-merge`, (pkg) => {
-      return `npm install --save-dev ${pkg}`;
-    }),
-    context.whenNotInstalled(`@types/koa`, (pkg) => {
-      return `npm install --save-dev ${pkg}`;
-    }),
-    context.whenNotInstalled(`@types/koa-bodyparser`, (pkg) => {
-      return `npm install --save-dev ${pkg}`;
-    }),
-    context.whenNotInstalled(`@types/koa-router`, (pkg) => {
-      return `npm install --save-dev ${pkg}`;
-    }),
-    context.whenNotInstalled(`@types/koa__cors`, (pkg) => {
-      return `npm install --save-dev ${pkg}`;
-    }),
+  console.log("Installing general prerequisites...");
+  await runner.execute([...commands, devCommands], {
+    cwd: context.getRootPath(),
+  });
+};
+
+const generateInstallationDevCommands = (context) => {
+  const devDependencies = [
+    "@koa/cors",
+    "webpack-merge",
+    "@types/koa",
+    "@types/koa-bodyparser",
+    "@types/koa-router",
+    "@types/koa__cors",
   ];
 
-  await runner.execute(cmds, { cwd: context.getRootPath() });
+  return devDependencies.map((dep) =>
+    context.whenNotInstalled(dep, (pkg) => {
+      const command = `npm install --save-dev ${pkg}`;
+      console.log(`Generated command for ${pkg}: ${command} 📦`);
+      return command;
+    })
+  );
+};
 
-  console.log("> PRE: requisites ✅ DONE");
+const generateInstallationCommands = (context) => {
+  const dependencies = [
+    "glob",
+    "ansi-colors",
+    "koa",
+    "koa-bodyparser",
+    "koa-router",
+  ];
+
+  return dependencies.map((dep) =>
+    context.whenNotInstalled(dep, (pkg) => {
+      const command = `npm install ${pkg}`;
+      console.log(`Generated command for ${pkg}: ${command} 📦`);
+      return command;
+    })
+  );
+};
+
+module.exports = async (runner, args) => {
+  console.log("PRE: 🚀 Starting installation of prerequisites (API)");
+
+  const helper = witHelper(args.rc, __dirname);
+  await installVersionSpecificDependencies(helper, runner, args);
+  await installGeneralDependencies(helper, runner);
+
+  console.log("PRE: ✅ Prerequisites installation complete.");
 };
