@@ -18,7 +18,6 @@ const installGeneralDependencies = async (helper, runner) => {
 
 const generateInstallationDevCommands = (context) => {
   const devDependencies = [
-    "@koa/cors",
     "webpack-merge",
     "@types/koa",
     "@types/koa-bodyparser",
@@ -42,6 +41,7 @@ const generateInstallationCommands = (context) => {
     "koa",
     "koa-bodyparser",
     "koa-router",
+    "@koa/cors",
   ];
 
   return dependencies.map((dep) =>
