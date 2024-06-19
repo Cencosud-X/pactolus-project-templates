@@ -2,8 +2,7 @@
   "$schema": "https://api.staging.cencox.xyz/seki/statics/public/schemas/v1/projects/typerc.schema.json",
   "name": "Api (with Koa)",
   "tags": ["Api", "Web server", "Koa", "beta", "Cencosud-xlabs"],
-  "kind": "api_koa",
-  "pipeline_kind": "api",
+  "kind": "api",
   "folder": "apps",
   "icons": {
     "light": "icons/icon.svg",
