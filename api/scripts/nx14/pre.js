@@ -6,9 +6,8 @@ module.exports = async (runner, context) => {
     // Project creation
     `nx g @nrwl/node:application ${context.getProjectName()} --bundler=webpack --framework=koa --e2eTestRunner=none --swcJest`,
     // Move specific version files
-    // `mv ${clonedPath}/scripts/nx16/template/project.json ${clonedPath}/template`,
-    // `mv ${clonedPath}/scripts/nx16/template/webpack.config.js ${clonedPath}/template`,
-    // `rm -rf ${clonedPath}/template/src/api/health/health.resolver.ts`,
+    `mv ${clonedPath}/scripts/nx14/template/project.json ${clonedPath}/template`,
+    `mv ${clonedPath}/scripts/nx14/template/webpack.js ${clonedPath}/template`,
   ];
 
   await runner.execute(cmds, { cwd: context.getRootPath() });
