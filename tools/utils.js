@@ -8,7 +8,6 @@ const PACKAGE_JSON = "package.json";
  * @typedef {Utils} TUtils
  */
 
-
 let _currentRc;
 let _currentTemporalClonedPath;
 
@@ -17,21 +16,21 @@ class Utils {
     _currentRc = rc;
 
     // Get up to one folder into full path , to get the cloned base path
-    _currentTemporalClonedPath= path.dirname(currentTemporalClonedPath)
+    _currentTemporalClonedPath = path.dirname(currentTemporalClonedPath);
   }
 
   /**
    * Get Configured Settings
    */
-  getSettings(){
+  getSettings() {
     return _currentRc.settings;
   }
 
   /**
-   * Return the path where the current archtype folder were 
+   * Return the path where the current archtype folder were
    * cloned in the current computer via cli clone
    */
-  getCurrentClonedPath(){
+  getCurrentClonedPath() {
     return _currentTemporalClonedPath;
   }
 
@@ -97,8 +96,8 @@ class Utils {
     }
 
     const packageJsonPath = path.join(_currentRc.workspace_path, PACKAGE_JSON);
-    const pkgDevDeps = require(packageJsonPath).devDependencies;
-    const pkgDeps = require(packageJsonPath).dependencies;
+    const pkgDevDeps = require(packageJsonPath).devDependencies || {};
+    const pkgDeps = require(packageJsonPath).dependencies || {};
     const packageLine = pkgDevDeps[packageName] || pkgDeps[packageName];
 
     if (!packageLine) {

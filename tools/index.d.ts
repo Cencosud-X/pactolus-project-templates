@@ -16,10 +16,7 @@ export type TContextualizedMethod = (
   context: TUtils
 ) => Promise<void>;
 
-export type TRawMethod = (
-  runner: IRunner,
-  args: IRawArgs
-) => Promise<void>;
+export type TRawMethod = (runner: IRunner, args: IRawArgs) => Promise<void>;
 
 interface IRawArgs {
   rc: Object;
@@ -60,5 +57,4 @@ interface IRc {
   path: Object;
   kind: Object;
   definition: ISettingDefinition;
-  settings: Object;
 }

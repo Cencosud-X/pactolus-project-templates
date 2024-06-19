@@ -1,26 +1,53 @@
+const { witHelper } = require("./../../tools/helper");
+
 module.exports = async (runner, args) => {
   console.log("> PRE: Installing prerequisites (API):");
 
-  const rc = args.rc;
-  await runner.execute(
-    [
-      `nx g @nx/node:application ${rc.path} --bundler=webpack --framework=koa --e2eTestRunner=none --swcJest`,
-      "npm install glob",
-      "npm install ansi-colors",
-      "npm install koa",
-      "npm install koa-bodyparser",
-      "npm install koa-router",
-      "npm install @koa/cors",
-      "npm install --save-dev webpack-merge",
-      "npm install --save-dev @types/koa",
-      "npm install --save-dev @types/koa-bodyparser",
-      "npm install --save-dev @types/koa-router",
-      "npm install --save-dev @types/koa__cors",
-    ],
-    {
-      cwd: rc.workspace_path,
-    }
-  );
+  // Call script based on the Nx Version!
+  const helper = witHelper(args.rc, __dirname);
+  await helper.callVersionedPre(runner, args);
+
+  // --------------------------------------------------------
+  // Always run this commands (nx version agnostic)
+  const context = helper.getContext();
+
+  const cmds = [
+    context.whenNotInstalled(`glob`, (pkg) => {
+      return `npm install ${pkg}`;
+    }),
+    context.whenNotInstalled(`ansi-colors`, (pkg) => {
+      return `npm install ${pkg}`;
+    }),
+    context.whenNotInstalled(`koa`, (pkg) => {
+      return `npm install ${pkg}`;
+    }),
+    context.whenNotInstalled(`koa-bodyparser`, (pkg) => {
+      return `npm install ${pkg}`;
+    }),
+    context.whenNotInstalled(`koa-router`, (pkg) => {
+      return `npm install ${pkg}`;
+    }),
+    context.whenNotInstalled(`@koa/cors`, (pkg) => {
+      return `npm install ${pkg}`;
+    }),
+    context.whenNotInstalled(`webpack-merge`, (pkg) => {
+      return `npm install --save-dev ${pkg}`;
+    }),
+    context.whenNotInstalled(`@types/koa`, (pkg) => {
+      return `npm install --save-dev ${pkg}`;
+    }),
+    context.whenNotInstalled(`@types/koa-bodyparser`, (pkg) => {
+      return `npm install --save-dev ${pkg}`;
+    }),
+    context.whenNotInstalled(`@types/koa-router`, (pkg) => {
+      return `npm install --save-dev ${pkg}`;
+    }),
+    context.whenNotInstalled(`@types/koa__cors`, (pkg) => {
+      return `npm install --save-dev ${pkg}`;
+    }),
+  ];
+
+  await runner.execute(cmds, { cwd: context.getRootPath() });
 
   console.log("> PRE: requisites ✅ DONE");
 };

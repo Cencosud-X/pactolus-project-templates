@@ -31,7 +31,6 @@ class Helper {
       14: 14,
       15: 14,
       16: 16,
-      17: 16,
     };
 
     let nxFolder = 16;
