@@ -2,6 +2,7 @@
  * @type {import("../../../tools").TContextualizedMethod}
  */
 module.exports = async (runner, context) => {
+  const clonedPath = context.getCurrentClonedPath();
   const cmds = [
     // Project creation
     `nx g @nx/node:application ${context.getProjectName()} --directory=apps/${context.getProjectName()} --projectNameAndRootFormat=as-provided --bundler=webpack --framework=koa --e2eTestRunner=none --swcJest`,
